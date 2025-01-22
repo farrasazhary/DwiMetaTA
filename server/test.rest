@@ -1,0 +1,11 @@
+GET http://localhost:5000/HasilName
+# Content-Type: application/json
+
+# {
+#   "nilai_baca": 90,
+#   "nilai_tulis": 30,
+#   "nilai_hitung": 200,
+#   "nilai_pemahaman": 99.5,
+#   "nilai_berpikir": 92.0,
+#   "motivasi": 89.0
+# }
