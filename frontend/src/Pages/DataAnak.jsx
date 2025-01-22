@@ -59,6 +59,7 @@ const DataAnak = () => {
             <thead className="bg-[#A0522D] text-white">
               <tr>
                 <th className="px-6 py-3">No</th>
+                <th className="px-6 py-3">Foto</th>
                 <th className="px-6 py-3">Nama</th>
                 <th className="px-6 py-3">Tanggal Lahir</th>
                 <th className="px-6 py-3">Usia</th>
@@ -76,6 +77,7 @@ const DataAnak = () => {
                   className="text-center hover:bg-gray-100"
                 >
                   <td className="px-6 py-3 border">{index + 1}</td>
+                  <td className="px-6 py-3 border"><img src={anak.foto} alt="Foto profile" className="w-12 h-12 rounded-full" /></td>
                   <td className="px-6 py-3 border">{anak.nama_anak}</td>
                   <td className="px-6 py-3 border">
                     {new Date(anak.tanggal_lahir).toLocaleDateString()}
@@ -85,16 +87,16 @@ const DataAnak = () => {
                   <td className="px-6 py-3 border">{anak.hobi}</td>
                   <td className="px-6 py-3 border">{anak.jenis_kelamin}</td>
                   <td className="px-6 py-3 border">{anak.alamat}</td>
-                  <td className="flex justify-center px-6 py-3 space-x-2 border">
+                  <td className="flex-auto p-1 border">
                     <button
                       onClick={() => handleEdit(anak.id_anak)}
-                      className="px-3 py-1 text-white bg-green-500 rounded hover:bg-green-600"
+                      className="w-20 mb-1 px-3 py-1 text-white bg-green-500 rounded hover:bg-green-600"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(anak.id_anak)}
-                      className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+                      className="w-20 px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                     >
                       Hapus
                     </button>

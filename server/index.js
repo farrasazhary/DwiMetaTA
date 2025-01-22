@@ -2,6 +2,8 @@ import  express from "express";
 import  mysql from "mysql";
 import  cors from "cors";
 import  dotenv from "dotenv";
+import path from 'path'
+import { fileURLToPath } from 'url';
 
 dotenv.config()
 import AnakRoute from './routes/AnakRoute.js'
@@ -11,11 +13,15 @@ import HistoryPredikRoute from './routes/HistoryPredikRoute.js'
 import bodyParser from 'body-parser'
 const app = express()
 
+
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+
 
 // konfigurasi koneksi ke database mysql
 const connection = mysql.createConnection({
@@ -35,6 +41,10 @@ connection.connect((err) => {
     console.log('Koneksi berhasil ke Mysql')
 
 })
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(cors())
 app.use(express.json())

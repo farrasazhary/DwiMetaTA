@@ -49,6 +49,7 @@ export const saveParameter = async (req, res) => {
     motivasi,
     nilai_tulis,
     jenis_kelamin,
+    
   ];
 
   const predictResult = await runPythonAsync(
@@ -86,34 +87,6 @@ export const saveParameter = async (req, res) => {
   }
 };
 
-// export const updateParameter = async (req, res) => {
-//     try {
-//         const { id } = req.params;
-//         const { membaca, berhitung, menulis, memahami, berfikir, motivasi } = req.body;
-
-//         const updatedParameter = await Parameter.update(
-//             {
-//                 nilai_baca: membaca,
-//                 nilai_hitung: berhitung,
-//                 nilai_tulis: menulis,
-//                 nilai_pemahaman: memahami,
-//                 nilai_berpikir: berfikir,
-//                 motivasi: motivasi,
-//             },
-//             { where: { id } }
-//         );
-
-//         if (updatedParameter[0] === 0) {
-//             return res.status(404).json({ message: "Parameter not found or no changes made" });
-//         }
-
-//         res.status(200).json({ message: "Parameter updated successfully" });
-//     } catch (err) {
-//         res.status(500).json({
-//             message: err.message,
-//         });
-//     }
-// };
 export const updateParameter = async (req, res) => {
     try {
       const { id } = req.params; // Ambil ID dari URL

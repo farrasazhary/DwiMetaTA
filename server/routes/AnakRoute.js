@@ -18,18 +18,19 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/anak', upload.single('foto'), (req, res, next) => {
-    if (req.file) {
-        req.body.foto = req.file.path; // Menyimpan path file di req.body untuk diakses oleh controller
-    }
-    next();
-}, saveAnak);
-router.patch('/anak/:id_anak', upload.single('foto'), (req, res, next) => {
-    if (req.file) {
-        req.body.foto = req.file.path;
-    }
-    next();
-}, updateAnak);
+// Middleware untuk mengubah path file menjadi URL
+const fileUrlMiddleware = (req, res, next) => {
+  if (req.file) {
+      // Buat URL lengkap berdasarkan host dan protocol
+      const fullUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+      req.body.foto = fullUrl;
+  }
+  next();
+};
+
+
+router.post('/anak', upload.single('foto'), fileUrlMiddleware, saveAnak);
+router.patch('/anak/:id_anak', upload.single('foto'), fileUrlMiddleware, updateAnak);
 router.get('/anak', getAnak);
 router.get('/anak/:id_anak', getAnakById);
 router.delete('/anak/:id_anak', deleteAnak);
